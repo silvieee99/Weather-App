@@ -1,11 +1,32 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weather_app/secrets.dart';
 import 'hourly_forecast_item.dart';
 import 'additional_info_item.dart';
+import 'package:http/http.dart' as http;
 
-class WeatherScreen extends StatelessWidget {
+//Press ctrl + shift + R to convert stateless widget to stateful
+class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
+
+  @override
+  State<WeatherScreen> createState() => _WeatherScreenState();
+}
+
+class _WeatherScreenState extends State<WeatherScreen> {
+  Future getCurrentWeather() async {
+    String cityName = 'London';
+    //to pass a URI, pass uri.parse
+    //URI- uniform resource identifier, URL - uiform resource locator
+    //URL is the subtype of URI
+    final res = await http.get(
+      Uri.parse(
+        'http://api.openweathermap.org/data/2.5/weather?q=$cityName&APPID=$openWeatherAPIkey',
+      ),
+    );
+    print(res.body);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -29,6 +29,10 @@ class HourlyForecastItem extends StatelessWidget {
             Text(
               time,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              //this makes the text not exceed more than one line
+              maxLines: 1,
+              //This makes text overflow to have ...
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 8),
             Icon(icon),
